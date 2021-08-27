@@ -1,4 +1,5 @@
 function emptywordSearch(size){
+    var wordSearch = Array.from(Array(size), () => new Array(size))
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     var charactersLength = characters.length
     for (let r = 0; r < size; r++){
@@ -6,6 +7,7 @@ function emptywordSearch(size){
             wordSearch[r][c] = characters.charAt(Math.floor(Math.random() * charactersLength));
         }
     }   
+    return wordSearch
 }
 function checkValid(orientation,size,length,r,c){
     switch (orientation){
@@ -68,21 +70,16 @@ function addWord(word,temp,size,_iteration){
 }
             
 function generate(size,_iteration){
-    var temp = Array.from(Array(size), () => new Array(size))
-    while (_iteration<=wordlist.length){
-        try{
-            temp = addWord(wordlist[_iteration],temp,size,_iteration)
-            _iteration +=1
-        }catch(error){
-            console.log(wordSearch)
-            throw new Error("sorry my fault, didn't mean to but now I am in byte nirvana");
-        }
+    while (_iteration < wordlist.length){
+        addWord(wordlist[_iteration],temp,size,_iteration)
+        _iteration +=1
     }
+    console.log(wordSearch)
 }
 
 var size = 5
-var wordSearch = Array.from(Array(size), () => new Array(size))
 var wordlist = ["@@@@","####"]
-emptywordSearch(size,0)
+var wordSearch = emptywordSearch(size)
+var temp = Array.from(Array(size), () => new Array(size))
 generate(size,0)
 console.log(wordSearch)
