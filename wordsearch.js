@@ -92,10 +92,9 @@ function generate(size,tryLimit,_iteration){
     }
 }
 
-var size = 50
-var wordlist = ["rose","tulips"]
+const size = 6
+const wordlist = ["grant","banks","meade"]
 var wordSearch = emptywordSearch(size)
 var temp = Array.from(Array(size), () => new Array(size))
-generate(size,50,0)
+generate(size,1000,0)
 console.log(wordSearch)
-
