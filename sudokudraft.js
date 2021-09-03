@@ -1,68 +1,27 @@
 //function
-function number_generator(horizontal_box, vertical_box) {
-    var x = 0;
-    var y = 0;
-    while (x != 9 && y != 9) {
-        if (sudoku_array[x][y] == 0) {
-            var number = sudoku_number_tracker[x][y]
-        } else {
-            number = sudoku_array[x][y]
-        }
-        var stop = false
-        while (stop == false)  {
-            number = (number + 1) % 9
-            number += 1
-            if (number != sudoku_number_tracker[x][y]) {
-                sudoku_array[x][y] = 0
-                if (number_tester(horizontal_box, vertical_box, x, y, number)) {
-                    sudoku_array[x][y] = number
-                    if (x != 8) {
-                        x += 1
-                    } else {
-                        x = 0
-                        y += 1
-                    }
-                    stop = true
-                }
-            } else {
-                sudoku_array[x][y] = 0
-                if (x != 0) {
-                    x -= 1
-                } else {
-                    x = 8
-                    y -= 1
-                }
-                stop = true
-            }
-        }
-    }
-}
-
-
 function number_tester(horizontal_box, vertical_box, x, y, number) {
     if (sudoku_array[x][y] != 0) {
-        return false
+        return False
     }
-    for (let i = 0; i < 9; i ++) {
+    for (let i in vertical_box*3) {
         if (sudoku_array[x][i] == number) {
-            return false
+            return False
         }
     }
-    for (let j = 0; j < 9; j ++) {
+    for (let i in horizontal_box*3) {
         if (sudoku_array[j][y] == number) {
-        return false
+        return False
         }
     }
-    for (let x2 = 0; x2 < 3; x2++) {
-        for (let y2 = 0; y2 < 3; y2++) {
+    for (let x2 = 0; i2 < 3; i2++) {
+        for (let y2 = 0; k2 < 3; k2++) {
             if (sudoku_array[Math.floor(x/3)*3 + x2][Math.floor(y/3)*3 + y2] == number) {
-                return false
+                return False
             }
         }
     }
     return number
 }
-
 
 function grid_randomizer(horizontal_box, vertical_box) {
     var x = 0;
@@ -105,6 +64,6 @@ for (let i = 0; i < rows; i++) {
     }
 }
 
+
 grid_randomizer(horizontal_box, vertical_box)
-number_generator(horizontal_box, vertical_box)
-console.log(sudoku_array)
+console.log(sudoku_number_tracker)

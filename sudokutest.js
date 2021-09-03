@@ -63,7 +63,6 @@ function number_tester(horizontal_box, vertical_box, x, y, number) {
     return number
 }
 
-
 function grid_randomizer(horizontal_box, vertical_box) {
     var x = 0;
     var y = 0;
